@@ -23,18 +23,32 @@ public class CourseDao {
     public void deleteCourse(@PathVariable("cid") Integer cid) {
         courseRepository.deleteById(cid);
     }
-    @GetMapping("/createCourse")
-    public Course createCourse() {
+    @GetMapping("/createCourse/{title}/{creditHours}/{courseNumber}/{term}")
+    public Course createCourse(
+            @PathVariable("title") String title,
+            @PathVariable("creditHours") Integer creditHours,
+            @PathVariable("courseNumber") Integer courseNumber,
+            @PathVariable("term") String term
+    ) {
         Course course = new Course();
-        course.setTitle("New Course");
+        course.setTitle(title);
+        course.setCreditHours(creditHours);
+        course.setCourseNumber(courseNumber);
+        course.setTerm(term);
         return courseRepository.save(course);
     }
     @GetMapping("/updateCourse/{courseId}/{newTitle}")
     public Course updateCourse(
-            @PathVariable("courseId") Integer courseId,
-            @PathVariable("newTitle") String newTitle) {
-        Course course = courseRepository.findById(courseId).get();
-        course.setTitle(newTitle);
+            @PathVariable("cid") Integer cid,
+            @PathVariable("title") String title,
+            @PathVariable("creditHours") Integer creditHours,
+            @PathVariable("courseNumber") Integer courseNumber,
+            @PathVariable("term") String term) {
+        Course course = courseRepository.findById(cid).get();
+        course.setTitle(title);
+        course.setCreditHours(creditHours);
+        course.setCourseNumber(courseNumber);
+        course.setTerm(term);
         return courseRepository.save(course);
     }
 }

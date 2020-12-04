@@ -11,15 +11,20 @@ import java.util.List;
 public class Section {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer sectionId;
-    private String sectionName;
+    private Integer CRN;
+    private String professor;
+    private String lectureTime;
+    private Integer capacity;
+    private Integer capacityRemaining;
+    private String campus;
+
     @ManyToOne
     @JsonIgnore
     private Course course;
 
     @Transient
     public Integer getCourseId() {
-        return course.getCourseId();
+        return course.getIdcourse();
     }
 
     @Transient
@@ -35,7 +40,7 @@ public class Section {
         enrollment.setStudent(student);
         enrollment.setSection(this);
         enrollment.setStudentId(student.getStudentId());
-        enrollment.setSectionId(this.getSectionId());
+        enrollment.setSectionId(this.getCRN());
         enrollment.setGrade(grade);
         if(this.students == null) {
             this.students = new ArrayList<>();
@@ -44,20 +49,52 @@ public class Section {
         student.getSections().add(enrollment);
     }
 
-    public Integer getSectionId() {
-        return sectionId;
+    public Integer getCRN() {
+        return CRN;
     }
 
-    public void setSectionId(Integer sectionId) {
-        this.sectionId = sectionId;
+    public void setCRN(Integer CRN) {
+        this.CRN = CRN;
     }
 
-    public String getSectionName() {
-        return sectionName;
+    public String getProfessor() {
+        return professor;
     }
 
-    public void setSectionName(String sectionName) {
-        this.sectionName = sectionName;
+    public void setProfessor(String professor) {
+        this.professor = professor;
+    }
+
+    public String getLectureTime() {
+        return lectureTime;
+    }
+
+    public void setLectureTime(String lectureTime) {
+        this.lectureTime = lectureTime;
+    }
+
+    public Integer getCapacity() {
+        return capacity;
+    }
+
+    public void setCapacity(Integer capacity) {
+        this.capacity = capacity;
+    }
+
+    public Integer getCapacityRemaining() {
+        return capacityRemaining;
+    }
+
+    public void setCapacityRemaining(Integer capacityRemaining) {
+        this.capacityRemaining = capacityRemaining;
+    }
+
+    public String getCampus() {
+        return campus;
+    }
+
+    public void setCampus(String campus) {
+        this.campus = campus;
     }
 
     public Course getCourse() {
@@ -66,5 +103,13 @@ public class Section {
 
     public void setCourse(Course course) {
         this.course = course;
+    }
+
+    public List<Enrollment> getStudents() {
+        return students;
+    }
+
+    public void setStudents(List<Enrollment> students) {
+        this.students = students;
     }
 }

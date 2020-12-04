@@ -31,12 +31,22 @@ public class SectionDao {
             @PathVariable("cid") Integer cid) {
         return courseRepository.findById(cid).get().getSections();
     }
-    @GetMapping("/createSectionForCourse/{cid}")
+    @GetMapping("/createSectionForCourse/{cid}/{professor}/{lectureTime}/{capacity}" +
+            "/{capacityRemaining}/{campus}")
     public Section createSectionForCourse(
-            @PathVariable("cid") Integer cid) {
+            @PathVariable("cid") Integer cid,
+            @PathVariable("professor") String professor,
+            @PathVariable("lectureTime") String lectureTime,
+            @PathVariable("capacity") Integer capacity,
+            @PathVariable("capacityRemaining") Integer capacityRemaining,
+            @PathVariable("campus") String campus) {
         Course course = courseRepository.findById(cid).get();
         Section section = new Section();
-        section.setSectionName("New Section");
+        section.setProfessor(professor);
+        section.setLectureTime(lectureTime);
+        section.setCapacity(capacity);
+        section.setCapacityRemaining(capacityRemaining);
+        section.setCampus(campus);
         section.setCourse(course);
         sectionRepository.save(section);
         return section;
@@ -46,12 +56,23 @@ public class SectionDao {
             @PathVariable("sid") Integer sid) {
         sectionRepository.deleteById(sid);
     }
-    @GetMapping("/updateSection/{sid}/{newName}")
+
+    //ALLOW UPDATING EACH FIELD
+    @GetMapping("/updateSection/{sid}/{professor}/{lectureTime}/{capacity}\" +\n" +
+            "            \"/{capacityRemaining}/{campus}")
     public Section updateSection(
             @PathVariable("sid") Integer sid,
-            @PathVariable("newName") String newName) {
+            @PathVariable("professor") String professor,
+            @PathVariable("lectureTime") String lectureTime,
+            @PathVariable("capacity") Integer capacity,
+            @PathVariable("capacityRemaining") Integer capacityRemaining,
+            @PathVariable("campus") String campus) {
         Section section = sectionRepository.findById(sid).get();
-        section.setSectionName(newName);
+        section.setProfessor(professor);
+        section.setLectureTime(lectureTime);
+        section.setCapacity(capacity);
+        section.setCapacityRemaining(capacityRemaining);
+        section.setCampus(campus);
         sectionRepository.save(section);
         return section;
     }
