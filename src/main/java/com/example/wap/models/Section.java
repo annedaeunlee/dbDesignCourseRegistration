@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name="sections")
+@Table(name="section")
 public class Section {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,9 +32,9 @@ public class Section {
         return course.getTitle();
     }
 
-    @OneToMany(mappedBy="section")
-    private List<Enrollment> students;
-
+   // @OneToMany(mappedBy="section")
+   // private List<Enrollment> students;
+/*
     public void addStudent(Student student, Float grade) {
         Enrollment enrollment = new Enrollment();
         enrollment.setStudent(student);
@@ -47,7 +47,7 @@ public class Section {
         }
         this.students.add(enrollment);
         student.getSections().add(enrollment);
-    }
+    }*/
 
     public Integer getCRN() {
         return CRN;
@@ -105,11 +105,11 @@ public class Section {
         this.course = course;
     }
 
-    public List<Enrollment> getStudents() {
+/*    public List<Enrollment> getStudents() {
         return students;
     }
 
     public void setStudents(List<Enrollment> students) {
         this.students = students;
-    }
+    }*/
 }

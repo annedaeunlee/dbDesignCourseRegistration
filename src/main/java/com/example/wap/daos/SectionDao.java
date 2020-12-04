@@ -58,8 +58,7 @@ public class SectionDao {
     }
 
     //ALLOW UPDATING EACH FIELD
-    @GetMapping("/updateSection/{sid}/{professor}/{lectureTime}/{capacity}\" +\n" +
-            "            \"/{capacityRemaining}/{campus}")
+    @GetMapping("/updateSection/{sid}/{professor}/{lectureTime}/{capacity}/{capacityRemaining}/{campus}")
     public Section updateSection(
             @PathVariable("sid") Integer sid,
             @PathVariable("professor") String professor,

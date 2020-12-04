@@ -37,7 +37,10 @@ public class CourseDao {
         course.setTerm(term);
         return courseRepository.save(course);
     }
-    @GetMapping("/updateCourse/{courseId}/{newTitle}")
+    //when creating a new course and deleting, continues to increment when creating new ones
+    //can we change that?
+
+    @GetMapping("/updateCourse/{cid}/{title}/{creditHours}/{courseNumber}/{term}")
     public Course updateCourse(
             @PathVariable("cid") Integer cid,
             @PathVariable("title") String title,
