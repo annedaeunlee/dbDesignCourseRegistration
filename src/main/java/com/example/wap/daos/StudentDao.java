@@ -25,7 +25,7 @@ public class StudentDao {
     }
 
 
-    @GetMapping("/createStudent/{first}/{last}/{sections}")
+    @GetMapping("/createStudent/{first}/{last}")
     public Student createStudent(
         @PathVariable("first") String first,
         @PathVariable("last") String last
