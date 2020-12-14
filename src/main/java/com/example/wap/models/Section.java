@@ -36,17 +36,17 @@ public class Section {
     @OneToMany(mappedBy="section")
     private List<Enrollment> students;
 
-    public void addStudent(Student student, Enrollment enrollment) {
-        enrollment.setStudent(student);
-        enrollment.setSection(this);
-        enrollment.setStudentId(student.getStudentId());
-        enrollment.setSectionId(this.getCRN());
-        if(this.students == null) {
-            this.students = new ArrayList<>();
-        }
-        this.students.add(enrollment);
-        student.getSections().add(enrollment);
-    }
+//    public void addStudent(Student student, Enrollment enrollment) {
+//        enrollment.setStudent(student);
+//        enrollment.setSection(this);
+//        enrollment.setStudentId(student.getStudentId());
+//        enrollment.setSectionId(this.getCRN());
+//        if(this.students == null) {
+//            this.students = new ArrayList<>();
+//        }
+//        this.students.add(enrollment);
+//        student.getSections().add(enrollment);
+//    }
 
     public Integer getCRN() {
         return CRN;

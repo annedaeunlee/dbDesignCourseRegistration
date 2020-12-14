@@ -10,19 +10,30 @@
   <script src="../services/course-service.js" type="text/babel"></script>
 
 </head>
+
+<style>
+  div.container6 {
+    height: 10em;
+    display: flex;
+    align-items: center;
+    justify-content: center }
+  div.container6 p {
+    margin: 0 }
+</style>
+
 <body>
 
-<h1>Student Login</h1>
+<h1 style="text-align: center">Student Login</h1>
 <div id="root"></div>
 <script src="studentLogin.js" type="text/babel"></script>
 
-
-<form action="../../course-list/course-list.html">
-  <label for="fname">Student ID:</label>
-  <input type="text" id="fname" name="fname"><br><br>
-  <input type="submit" value="Submit">
+<div class="container6">
+<form action="../../course-add/course-add.html" method="get" target="_blank">
+  <label for="id">Student ID:</label>
+  <input  type="text" id="id" name="id"><br><br>
+  <input  type="submit" value="Submit">
 </form>
-
+</div>
 
 </body>
 </html>

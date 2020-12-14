@@ -22,7 +22,7 @@ class CourseEditor extends React.Component {
         <h1>Course Editor {this.state.course.title}</h1>
 
           <input
-            value={this.state.course.cid}
+            value={this.state.course.idcourse}
             className="form-control"
             readOnly={true}/>
           <input
@@ -66,7 +66,7 @@ class CourseEditor extends React.Component {
           <a className="btn btn-danger" href="../../course-list/course-list.html">
             Cancel
           </a>
-        <a href={`../../section-list/section-list.html?cid=${this.state.course.cid}`}>
+        <a href={`../../section-list/section-list.html?cid=${this.state.course.idcourse}`}>
           Sections
         </a>
       </div>

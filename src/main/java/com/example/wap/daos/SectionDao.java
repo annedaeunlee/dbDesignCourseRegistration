@@ -84,18 +84,24 @@ public class SectionDao {
         return section;
     }
 
-    @GetMapping("/addStudent/{sid}/{studentId}")
-    public Section addStudent(
-            @PathVariable("sid") Integer sid,
-            @PathVariable("studentId") Integer studentId) {
-        Section section = sectionRepository.findById(sid).get();
-        Student student = studentRepository.findById(studentId).get();
-        Enrollment enrollment = new EnrollmentDao().createEnrollment(studentId, sid);
-
-        section.addStudent(student, enrollment);
-        section.setCapacityRemaining(section.getCapacityRemaining()-1);
-        sectionRepository.save(section);
-        studentRepository.save(student);
-        return section;
+    @GetMapping("/studentList/{sid}")
+    public Iterable<Enrollment> enrollmentList(
+            @PathVariable("sid") Integer sectionId
+    ) {
+        return sectionRepository.findById(sectionId).get().getStudents();
     }
+//    @GetMapping("/addStudent/{sid}/{studentId}")
+//    public Section addStudent(
+//            @PathVariable("sid") Integer sid,
+//            @PathVariable("studentId") Integer studentId) {
+//        Section section = sectionRepository.findById(sid).get();
+//        Student student = studentRepository.findById(studentId).get();
+//        Enrollment enrollment = new EnrollmentDao().createEnrollment(studentId, sid);
+//
+//        section.addStudent(student, enrollment);
+//        section.setCapacityRemaining(section.getCapacityRemaining()-1);
+//        sectionRepository.save(section);
+//        studentRepository.save(student);
+//        return section;
+//    }
 }

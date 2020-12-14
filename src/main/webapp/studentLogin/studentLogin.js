@@ -1,12 +1,14 @@
 class StudentLogin extends React.Component {
   state = {
-    student: {}
+    id: -1
   }
 
 
   submitForm = () =>
       createStudent(this.state.student)
 
+    componentDidMount = () =>
+        this.findAllCourses()
   render() {
     return(
         <div className="container-fluid">

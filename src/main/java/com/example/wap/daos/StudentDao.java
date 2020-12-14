@@ -36,5 +36,10 @@ public class StudentDao {
         return studentRepository.save(student);
     }
 
-
+    @GetMapping("/sectionList/{sid}")
+    public Iterable<Enrollment> enrollmentList(
+            @PathVariable("sid") Integer studentId
+    ) {
+        return studentRepository.findById(studentId).get().getSections();
+    }
 }

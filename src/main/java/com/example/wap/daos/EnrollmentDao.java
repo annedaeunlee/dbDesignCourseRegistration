@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+
 @RestController
 public class EnrollmentDao {
     @Autowired
@@ -24,13 +27,39 @@ public class EnrollmentDao {
     public Iterable<Enrollment> findAllEnrollments() {
         return enrollmentRepository.findAll();
     }
-    @GetMapping("/findEnrollmentById/{cid}")
-    public Enrollment findEnrollmentById(@PathVariable("cid") Integer cid) {
-        return enrollmentRepository.findById(cid).get();
+
+    @GetMapping("/findEnrollment/{studentId}/{sectionId}")
+    public Enrollment findEnrollmentById(@PathVariable("studentId") Integer studentId,
+                                         @PathVariable("sectionId") Integer sectionId) {
+        Iterable<Enrollment> enrollments = this.findAllEnrollments();
+        Iterator<Enrollment> iter = enrollments.iterator();
+        while (iter.hasNext()) {
+            Enrollment enrollment = iter.next();
+            if (enrollment.getStudentId() == studentId && enrollment.getSectionId() == sectionId) {
+                return enrollment;
+            }
+        }
+        return null;
     }
-    @GetMapping("/deleteEnrollment/{cid}")
-    public void deleteEnrollment(@PathVariable("cid") Integer cid) {
-        enrollmentRepository.deleteById(cid);
+
+    @GetMapping("/deleteAllEnrollment")
+    public void deleteAllEnrollment()
+    {
+        enrollmentRepository.deleteAll();
+    }
+
+    @GetMapping("/deleteEnrollment/{studentId}/{sectionId}")
+    public void deleteEnrollment(@PathVariable("studentId") Integer studentId,
+                                 @PathVariable("sectionId") Integer sectionId) {
+
+        Iterable<Enrollment> enrollments = this.findAllEnrollments();
+        Iterator<Enrollment> iter = enrollments.iterator();
+        while (iter.hasNext()) {
+            Enrollment enrollment = iter.next();
+            if (enrollment.getStudentId() == studentId && enrollment.getSectionId() == sectionId) {
+                enrollmentRepository.delete(enrollment);
+            }
+        }
     }
     @GetMapping("/createEnrollment/{studentId}/{sectionId}")
     public Enrollment createEnrollment(
