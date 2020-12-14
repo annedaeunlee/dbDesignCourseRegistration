@@ -1,9 +1,13 @@
 package com.example.wap.daos;
 
 import com.example.wap.models.Course;
+import com.example.wap.models.Enrollment;
 import com.example.wap.models.Section;
+import com.example.wap.models.Student;
 import com.example.wap.repositories.CourseRepository;
+import com.example.wap.repositories.EnrollmentRepository;
 import com.example.wap.repositories.SectionRepository;
+import com.example.wap.repositories.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,6 +19,10 @@ import java.util.List;
 public class SectionDao {
     @Autowired
     SectionRepository sectionRepository;
+    @Autowired
+    StudentRepository studentRepository;
+    @Autowired
+    EnrollmentRepository enrollmentRepository;
     @Autowired
     CourseRepository courseRepository;
     @GetMapping("/findAllSections")
@@ -73,6 +81,21 @@ public class SectionDao {
         section.setCapacityRemaining(capacityRemaining);
         section.setCampus(campus);
         sectionRepository.save(section);
+        return section;
+    }
+
+    @GetMapping("/addStudent/{sid}/{studentId}")
+    public Section addStudent(
+            @PathVariable("sid") Integer sid,
+            @PathVariable("studentId") Integer studentId) {
+        Section section = sectionRepository.findById(sid).get();
+        Student student = studentRepository.findById(studentId).get();
+        Enrollment enrollment = new EnrollmentDao().createEnrollment(studentId, sid);
+
+        section.addStudent(student, enrollment);
+        section.setCapacityRemaining(section.getCapacityRemaining()-1);
+        sectionRepository.save(section);
+        studentRepository.save(student);
         return section;
     }
 }

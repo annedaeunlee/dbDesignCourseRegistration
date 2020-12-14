@@ -11,6 +11,7 @@ import java.util.List;
 public class Section {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="crn")
     private Integer CRN;
     private String professor;
     private String lectureTime;
@@ -32,22 +33,20 @@ public class Section {
         return course.getTitle();
     }
 
-   // @OneToMany(mappedBy="section")
-   // private List<Enrollment> students;
-/*
-    public void addStudent(Student student, Float grade) {
-        Enrollment enrollment = new Enrollment();
+    @OneToMany(mappedBy="section")
+    private List<Enrollment> students;
+
+    public void addStudent(Student student, Enrollment enrollment) {
         enrollment.setStudent(student);
         enrollment.setSection(this);
         enrollment.setStudentId(student.getStudentId());
         enrollment.setSectionId(this.getCRN());
-        enrollment.setGrade(grade);
         if(this.students == null) {
             this.students = new ArrayList<>();
         }
         this.students.add(enrollment);
         student.getSections().add(enrollment);
-    }*/
+    }
 
     public Integer getCRN() {
         return CRN;
@@ -105,11 +104,11 @@ public class Section {
         this.course = course;
     }
 
-/*    public List<Enrollment> getStudents() {
+    public List<Enrollment> getStudents() {
         return students;
     }
 
     public void setStudents(List<Enrollment> students) {
         this.students = students;
-    }*/
+    }
 }

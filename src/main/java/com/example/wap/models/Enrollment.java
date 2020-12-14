@@ -12,7 +12,6 @@ public class Enrollment {
     private Integer studentId;
     @Id
     private Integer sectionId;
-    private Float grade;
     @ManyToOne
     @PrimaryKeyJoinColumn(name="studentId", referencedColumnName="studentId")
     @JsonIgnore
@@ -36,14 +35,6 @@ public class Enrollment {
 
     public void setSectionId(Integer sectionId) {
         this.sectionId = sectionId;
-    }
-
-    public Float getGrade() {
-        return grade;
-    }
-
-    public void setGrade(Float grade) {
-        this.grade = grade;
     }
 
     public Student getStudent() {

@@ -1,0 +1,49 @@
+package com.example.wap.daos;
+
+import com.example.wap.models.Course;
+import com.example.wap.models.Enrollment;
+import com.example.wap.models.Section;
+import com.example.wap.models.Student;
+import com.example.wap.repositories.EnrollmentRepository;
+import com.example.wap.repositories.SectionRepository;
+import com.example.wap.repositories.StudentRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class EnrollmentDao {
+    @Autowired
+    EnrollmentRepository enrollmentRepository;
+    @Autowired
+    StudentRepository studentRepository;
+    @Autowired
+    SectionRepository sectionRepository;
+    @GetMapping("/findAllEnrollments")
+    public Iterable<Enrollment> findAllEnrollments() {
+        return enrollmentRepository.findAll();
+    }
+    @GetMapping("/findEnrollmentById/{cid}")
+    public Enrollment findEnrollmentById(@PathVariable("cid") Integer cid) {
+        return enrollmentRepository.findById(cid).get();
+    }
+    @GetMapping("/deleteEnrollment/{cid}")
+    public void deleteEnrollment(@PathVariable("cid") Integer cid) {
+        enrollmentRepository.deleteById(cid);
+    }
+    @GetMapping("/createEnrollment/{studentId}/{sectionId}")
+    public Enrollment createEnrollment(
+            @PathVariable("studentId") Integer studentId,
+            @PathVariable("sectionId") Integer sectionId
+    ) {
+        Student student = studentRepository.findById(studentId).get();
+        Section section = sectionRepository.findById(sectionId).get();
+        Enrollment enroll = new Enrollment();
+        enroll.setStudentId(studentId);
+        enroll.setSectionId(sectionId);
+        enroll.setStudent(student);
+        enroll.setSection(section);
+        return enrollmentRepository.save(enroll);
+    }
+}
