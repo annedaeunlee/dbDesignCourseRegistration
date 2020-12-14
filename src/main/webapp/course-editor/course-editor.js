@@ -13,7 +13,7 @@ class CourseEditor extends React.Component {
   }
 
   submitForm = () =>
-    updateCourse(this.state.course)
+    updateCourse(this.state.student)
       .then(this.findCourseById)
 
   render() {
