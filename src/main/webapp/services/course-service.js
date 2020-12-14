@@ -20,5 +20,5 @@ const deleteCourse = (cid) =>
   fetch(`${DELETE_COURSE_URL}/${cid}`)
 
 const updateCourse = (course) =>
-  fetch(`${UPDATE_COURSE}/${course.idcourse}/${course.title}`)
+  fetch(`${UPDATE_COURSE}/${course.idcourse}/${course.title}/${course.creditHours}/${course.courseNumber}/${course.term}`)
     .then(response => response.json())

@@ -20,7 +20,7 @@ class CourseEditor extends React.Component {
     return(
       <div className="container-fluid">
         <h1>Course Editor {this.state.course.title}</h1>
-        <form>
+
           <input
             value={this.state.course.cid}
             className="form-control"
@@ -33,6 +33,30 @@ class CourseEditor extends React.Component {
             })}
             className="form-control"
             value={this.state.course.title}/>
+          <input
+              onChange={
+                (event) =>
+                    this.setState({
+                      course: {...this.state.course, creditHours: event.target.value}
+                    })}
+              className="form-control"
+              value={this.state.course.creditHours}/>
+        <input
+            onChange={
+              (event) =>
+                  this.setState({
+                    course: {...this.state.course, courseNumber: event.target.value}
+                  })}
+            className="form-control"
+            value={this.state.course.courseNumber}/>
+        <input
+            onChange={
+              (event) =>
+                  this.setState({
+                    course: {...this.state.course, term: event.target.value}
+                  })}
+            className="form-control"
+            value={this.state.course.term}/>
           <button
             type="button"
             onClick={() => this.submitForm()}
@@ -42,7 +66,6 @@ class CourseEditor extends React.Component {
           <a className="btn btn-danger" href="../../course-list/course-list.html">
             Cancel
           </a>
-        </form>
         <a href={`../../section-list/section-list.html?cid=${this.state.course.cid}`}>
           Sections
         </a>
