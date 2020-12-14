@@ -40,8 +40,8 @@ public class CourseDao {
     //when creating a new course and deleting, continues to increment when creating new ones
     //can we change that?
 
-    @GetMapping("/updateCourse/{cid}/{title}/{creditHours}/{courseNumber}/{term}")
-    public Course updateCourse(
+    @GetMapping("/updateCourseAll/{cid}/{title}/{creditHours}/{courseNumber}/{term}")
+    public Course updateCourseAll(
             @PathVariable("cid") Integer cid,
             @PathVariable("title") String title,
             @PathVariable("creditHours") Integer creditHours,
@@ -52,6 +52,16 @@ public class CourseDao {
         course.setCreditHours(creditHours);
         course.setCourseNumber(courseNumber);
         course.setTerm(term);
+        return courseRepository.save(course);
+    }
+
+
+    @GetMapping("/updateCourse/{cid}/{title}")
+    public Course updateCourse(
+        @PathVariable("cid") Integer cid,
+        @PathVariable("title") String title) {
+        Course course = courseRepository.findById(cid).get();
+        course.setTitle(title);
         return courseRepository.save(course);
     }
 }
