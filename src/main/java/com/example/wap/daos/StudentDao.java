@@ -36,6 +36,25 @@ public class StudentDao {
         return studentRepository.save(student);
     }
 
+    @GetMapping("/deleteStudent/{id}")
+    public void deleteStudent(
+            @PathVariable("id") Integer id
+    ) {
+        studentRepository.deleteById(id);
+    }
+
+    @GetMapping("/updateStudent/{studentId}/{first}/{last}")
+    public Student updateStudent(
+        @PathVariable("studentId") Integer studentId,
+        @PathVariable("first") String first,
+        @PathVariable("last") String last) {
+        Student student = studentRepository.findById(studentId).get();
+        student.setFirst(first);
+        student.setLast(last);
+        return studentRepository.save(student);
+    }
+
+
     @GetMapping("/sectionList/{sid}")
     public Iterable<Enrollment> enrollmentList(
             @PathVariable("sid") Integer studentId

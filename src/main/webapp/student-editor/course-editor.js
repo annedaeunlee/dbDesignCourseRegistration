@@ -12,11 +12,9 @@ class CourseEditor extends React.Component {
       .then(course => this.setState({course}))
   }
 
-  submitForm = () => {
-      alert("Updated")
-      updateCourse(this.state.course)
-          .then(this.findCourseById)
-  }
+  submitForm = () =>
+    updateCourse(this.state.course)
+      .then(this.findCourseById)
 
   render() {
     return(
@@ -68,6 +66,9 @@ class CourseEditor extends React.Component {
           <a className="btn btn-danger" href="../../course-list/course-list.html">
             Cancel
           </a>
+        <a href={`../../section-list/section-list.html?cid=${this.state.course.idcourse}`}>
+          Sections
+        </a>
       </div>
     )
   }

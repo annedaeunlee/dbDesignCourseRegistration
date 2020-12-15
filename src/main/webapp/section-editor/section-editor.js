@@ -14,7 +14,7 @@ class SectionEditor extends React.Component {
   componentDidMount = () => this.findSectionById()
 
   submitForm = () => {
-    updateSection(this.state.section)
+    updateSection2(this.state.section)
       .then(this.findSectionById)
   }
 

@@ -39,7 +39,7 @@ class MyCourses extends React.Component {
         let search = window.location.search
         search = search.split("?")
         const studentId = search[1]
-
+        alert("Dropped")
         deleteEnrollment(studentId, sectionId)
             .then(() => this.myCourses())
 }
