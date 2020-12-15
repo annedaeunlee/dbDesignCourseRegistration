@@ -73,6 +73,8 @@ public class EnrollmentDao {
         enroll.setSectionId(sectionId);
         enroll.setStudent(student);
         enroll.setSection(section);
-        return enrollmentRepository.save(enroll);
+        enrollmentRepository.save(enroll);
+        return enroll;
+
     }
 }
