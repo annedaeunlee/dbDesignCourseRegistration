@@ -26,7 +26,7 @@ const deleteSection = (sectionId) =>
   fetch(`${DELETE_SECTION_URL}/${sectionId}`)
 
 const updateSection = (section) =>
-  fetch(`${UPDATE_SECTION}/${section.sectionId}/${section.sectionName}`)
+  fetch(`${UPDATE_SECTION}/${section.crn}/${section.professor}/${section.lectureTime}/${section.capacity}/${section.capacityRemaining}/${section.campus}`)
     .then(response => response.json())
 
 const studentList = (sectionId) =>

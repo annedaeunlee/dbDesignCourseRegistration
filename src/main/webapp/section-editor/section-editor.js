@@ -39,6 +39,66 @@ class SectionEditor extends React.Component {
               }}
             className="form-control"
             value={this.state.section.sectionName}/>
+          <input
+              onChange={
+                (event) => {
+                  this.setState({
+                    section: {
+                      ...this.state.section,
+                      professor: event.target.value
+                    }
+                  })
+                }}
+              className="form-control"
+              value={this.state.section.professor}/>
+          <input
+              onChange={
+                (event) => {
+                  this.setState({
+                    section: {
+                      ...this.state.section,
+                      lectureTime: event.target.value
+                    }
+                  })
+                }}
+              className="form-control"
+              value={this.state.section.lectureTime}/>
+          <input
+              onChange={
+                (event) => {
+                  this.setState({
+                    section: {
+                      ...this.state.section,
+                      capacity: event.target.value
+                    }
+                  })
+                }}
+              className="form-control"
+              value={this.state.section.capacity}/>
+          <input
+              onChange={
+                (event) => {
+                  this.setState({
+                    section: {
+                      ...this.state.section,
+                      capacityRemaining: event.target.value
+                    }
+                  })
+                }}
+              className="form-control"
+              value={this.state.section.capacityRemaining}/>
+          <input
+              onChange={
+                (event) => {
+                  this.setState({
+                    section: {
+                      ...this.state.section,
+                      campus: event.target.value
+                    }
+                  })
+                }}
+              className="form-control"
+              value={this.state.section.campus}/>
           <a href={`../../course-editor/course-editor.html?courseId=${this.state.section.courseId}`}>
             {this.state.section.courseTitle}
           </a>
