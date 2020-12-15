@@ -40,8 +40,18 @@ class CourseAdd extends React.Component {
              href="../../index.html">
             Home
           </a>
-          <h1>Course List</h1>
+          <h1>Courses</h1>
           <table className="table">
+            <thead>
+            <tr>
+              <th>Course ID</th>
+              <th>Course Title</th>
+              <th>Credit Hours</th>
+              <th>Course Number</th>
+              <th>Term</th>
+              <th>&nbsp;</th>
+            </tr>
+            </thead>
             <tbody>
             {
               this.state.courses.map((course) =>

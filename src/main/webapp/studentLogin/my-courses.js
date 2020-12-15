@@ -53,14 +53,16 @@ class MyCourses extends React.Component {
                    href="../../index.html">
                     Home
                 </a>
-                <h1>Course List</h1>
+                <h1>My Courses</h1>
                 <table className="table">
+                    <th>Section ID</th>
                     <tbody>
                     {
                         this.state.sections.map((section) =>
 
                             <tr>
                                 <td>{section.sectionId}</td>
+                                <td>{section.lectureTime}</td>
                                 <td>
                                     <button className="btn btn-danger float-right"
                                             onClick={() => this.deleteEnrollment(section.sectionId)}>

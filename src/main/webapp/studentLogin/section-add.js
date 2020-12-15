@@ -49,13 +49,17 @@ class SectionAdd extends React.Component {
                     Home
                 </a>
 
-                <h1>Section List</h1>
+                <h1>Sections</h1>
 
                 <table className="table">
                     <thead>
                     <tr>
                         <th>Section ID</th>
-                        <th>Name</th>
+                        <th>Professor</th>
+                        <th>Lecture Time</th>
+                        <th>Capacity</th>
+                        <th>Capacity Remaining</th>
+                        <th>Campus</th>
                         <th>Course</th>
                         <th>&nbsp;</th>
                     </tr>
@@ -65,7 +69,11 @@ class SectionAdd extends React.Component {
                         this.state.sections.map(section =>
                             <tr key={section.crn}>
                                 <td>{section.crn}</td>
-                                <td>{section.sectionName}</td>
+                                <td>{section.professor}</td>
+                                <td>{section.lectureTime}</td>
+                                <td>{section.capacity}</td>
+                                <td>{section.capacityRemaining}</td>
+                                <td>{section.campus}</td>
                                 <td>
                                     <a href={`../../course-editor/course-editor.html?courseId=${section.courseId}`}>
                                         {section.courseTitle}
