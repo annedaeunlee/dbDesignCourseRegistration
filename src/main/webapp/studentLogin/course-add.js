@@ -58,7 +58,7 @@ class CourseAdd extends React.Component {
 }
 
 ReactDOM.render(
-    <CourseList />,
+    <CourseAdd />,
     document.getElementById('root')
 )
 
