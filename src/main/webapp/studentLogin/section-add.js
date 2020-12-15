@@ -10,8 +10,8 @@ class SectionList extends React.Component {
     findSectionsForCourse = () => {
         let search = window.location.search
         search = search.split("?")
-        const courseId = search[1]
-        const studentId = search[2]
+        const courseId = search[2]
+        const studentId = search[1]
         findSectionsForCourse(courseId)
             .then(sections => this.setState({sections}))
     }
@@ -67,6 +67,6 @@ class SectionList extends React.Component {
 }
 
 ReactDOM.render(
-    <SectionList />,
+    <SectionAdd />,
     document.getElementById('root')
 )
