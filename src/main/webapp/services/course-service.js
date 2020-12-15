@@ -12,9 +12,9 @@ const findCourseById = (courseId) =>
   fetch(`${FIND_COURSE_BY_ID}/${courseId}`)
     .then(response => response.json())
 
-const createCourse = (course) =>
-  fetch(`${CREATE_COURSE_URL}`)
-    .then(response => response.json())
+const createCourse = (title, creditHours, courseNumber, term) =>
+    fetch(`${CREATE_COURSE_URL}/${title}/${creditHours}/${courseNumber}/${term}`)
+        .then(response => response.json())
 
 const deleteCourse = (cid) =>
   fetch(`${DELETE_COURSE_URL}/${cid}`)

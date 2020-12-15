@@ -11,9 +11,11 @@ class CourseList extends React.Component {
     createCourse()
       .then(() => this.findAllCourses())
 
-  deleteCourse = (idcourse) =>
-    deleteCourse(idcourse)
-      .then(() => this.findAllCourses())
+  deleteCourse = (idcourse) => {
+      alert("Deleted")
+      deleteCourse(idcourse)
+          .then(() => this.findAllCourses())
+  }
 
   componentDidMount = () =>
     this.findAllCourses()
@@ -21,11 +23,10 @@ class CourseList extends React.Component {
   render() {
     return(
       <div className="container-fluid">
-        <button
-          className="btn btn-success float-right"
-          onClick={() => this.createCourse()}>
-          Create
-        </button>
+          <a className="btn btn-success float-right"
+             href="../course-editor/create.html">
+              Create
+          </a>
         <a className="btn btn-danger float-right"
            href="../../index.html">
           Home

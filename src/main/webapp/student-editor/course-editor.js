@@ -12,11 +12,9 @@ class CourseEditor extends React.Component {
       .then(course => this.setState({course}))
   }
 
-  submitForm = () => {
-      alert("Updated")
-      updateCourse(this.state.course)
-          .then(this.findCourseById)
-  }
+  submitForm = () =>
+    updateCourse(this.state.course)
+      .then(this.findCourseById)
 
   render() {
     return(

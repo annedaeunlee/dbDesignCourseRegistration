@@ -21,6 +21,7 @@ class SectionAdd extends React.Component {
         let search = window.location.search
         search = search.split("?")
         const studentId = search[1]
+        alert("Added")
         createEnrollment(studentId, sectionId).then(() =>this.findSectionsForCourse())
     }
 

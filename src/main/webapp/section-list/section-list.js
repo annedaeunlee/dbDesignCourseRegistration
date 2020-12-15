@@ -29,7 +29,16 @@ class SectionList extends React.Component {
   render() {
     return(
         <div className="container-fluid">
+          <a className="btn btn-success float-right"
+             href="../section-editor/createSection.html">
+            Create
+          </a>
+          <a className="btn btn-danger float-right"
+             href="../../index.html">
+            Home
+          </a>
           <h1>Section List</h1>
+
           <table className="table">
             <thead>
             <tr>

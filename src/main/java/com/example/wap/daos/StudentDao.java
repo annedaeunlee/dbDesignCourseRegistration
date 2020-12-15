@@ -36,6 +36,13 @@ public class StudentDao {
         return studentRepository.save(student);
     }
 
+    @GetMapping("/deleteStudent/{id}")
+    public void deleteStudent(
+            @PathVariable("id") Integer id
+    ) {
+        studentRepository.deleteById(id);
+    }
+
     @GetMapping("/sectionList/{sid}")
     public Iterable<Enrollment> enrollmentList(
             @PathVariable("sid") Integer studentId

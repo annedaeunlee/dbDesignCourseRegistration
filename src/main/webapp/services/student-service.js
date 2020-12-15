@@ -2,6 +2,7 @@ const FIND_ALL_STUDENTS  = "http://localhost:8080/findAllStudents"
 const FIND_STUDENT_BY_ID = "http://localhost:8080/findStudentById"
 const CREATE_STUDENT_URL = "http://localhost:8080/createStudent"
 const SECTION_LIST = "http://localhost:8080/sectionList"
+const DELETE_STUDENT = "http://localhost:8080/deleteStudent"
 
 
 const findAllStudents = () =>
@@ -24,3 +25,6 @@ const createCourse = (student) =>
 const sectionList = (studentId) =>
     fetch(`${SECTION_LIST}/${studentId}`)
         .then(response => response.json())
+
+const deleteStudent = (id) =>
+    fetch(`${DELETE_STUDENT}/${id}`)
