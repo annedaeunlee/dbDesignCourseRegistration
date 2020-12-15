@@ -31,11 +31,11 @@ class CourseAdd extends React.Component {
   render() {
     return(
         <div className="container-fluid">
-          <button
-              className="btn btn-success float-right"
-              onClick={() => this.createCourse()}>
-            Create
-          </button>
+            <a
+                className="btn btn-success float-right"
+                href={`/studentLogin/my-courses.html?`+this.state.id}>
+                My Courses
+            </a>
           <a className="btn btn-danger float-right"
              href="../../index.html">
             Home

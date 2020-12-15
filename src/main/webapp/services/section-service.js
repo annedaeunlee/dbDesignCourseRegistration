@@ -4,6 +4,7 @@ const FIND_SECTIONS_FOR_COURSE = "http://localhost:8080/findSectionsForCourse"
 const CREATE_SECTION_URL = "http://localhost:8080/createSection"
 const DELETE_SECTION_URL = "http://localhost:8080/deleteSection"
 const UPDATE_SECTION     = "http://localhost:8080/updateSection"
+const STUDENT_LIST = "http://localhost:8080/studentList"
 
 const findAllSections = () =>
   fetch(`${FIND_ALL_SECTIONS}`)
@@ -27,3 +28,6 @@ const deleteSection = (sectionId) =>
 const updateSection = (section) =>
   fetch(`${UPDATE_SECTION}/${section.sectionId}/${section.sectionName}`)
     .then(response => response.json())
+
+const studentList = (sectionId) =>
+    fetch(`${STUDENT_LIST}/${sectionId}`)

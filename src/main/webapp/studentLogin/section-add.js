@@ -1,6 +1,7 @@
-class SectionList extends React.Component {
+class SectionAdd extends React.Component {
     state = {
-        sections: []
+        sections: [],
+        studentId: window.location.search.split("?")[1]
     }
 
     findAllSections = () =>
@@ -11,10 +12,19 @@ class SectionList extends React.Component {
         let search = window.location.search
         search = search.split("?")
         const courseId = search[2]
-        const studentId = search[1]
         findSectionsForCourse(courseId)
             .then(sections => this.setState({sections}))
     }
+
+    addSection = (sectionId) => {
+        console.log("hi")
+        let search = window.location.search
+        search = search.split("?")
+        const studentId = search[1]
+        createEnrollment(studentId, sectionId).then(() =>this.findSectionsForCourse())
+    }
+
+
 
     componentDidMount = () => {
         let search = window.location.search
@@ -29,7 +39,18 @@ class SectionList extends React.Component {
     render() {
         return(
             <div className="container-fluid">
+                <a
+                    className="btn btn-success float-right"
+                    href={`/studentLogin/my-courses.html?`+this.state.studentId}>
+                    My Courses
+                </a>
+                <a className="btn btn-danger float-right"
+                   href="../../index.html">
+                    Home
+                </a>
+
                 <h1>Section List</h1>
+
                 <table className="table">
                     <thead>
                     <tr>
@@ -42,8 +63,8 @@ class SectionList extends React.Component {
                     <tbody>
                     {
                         this.state.sections.map(section =>
-                            <tr key={section.sectionId}>
-                                <td>{section.sectionId}</td>
+                            <tr key={section.crn}>
+                                <td>{section.crn}</td>
                                 <td>{section.sectionName}</td>
                                 <td>
                                     <a href={`../../course-editor/course-editor.html?courseId=${section.courseId}`}>
@@ -52,8 +73,8 @@ class SectionList extends React.Component {
                                 </td>
                                 <td>
                                     <a className="btn btn-primary"
-                                       href={`../../section-editor/section-editor.html?sectionId=${section.sectionId}`}>
-                                        Edit
+                                       onClick={() => this.addSection(section.crn)}>
+                                        Add
                                     </a>
                                 </td>
                             </tr>
