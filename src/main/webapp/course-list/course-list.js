@@ -35,6 +35,7 @@ class CourseList extends React.Component {
           <tbody>
           {
             this.state.courses.map((course) =>
+
               <tr key={course.idcourse}>
                 <td>{course.idcourse}</td>
                 <td>{course.title}</td>
