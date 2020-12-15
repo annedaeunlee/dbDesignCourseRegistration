@@ -16,6 +16,12 @@ class SectionList extends React.Component {
     .then(sections => this.setState({sections}))
   }
 
+  deleteSection = (id) => {
+    alert("Deleted")
+    deleteSection(id)
+        .then(() => this.findAllSections())
+  }
+
   componentDidMount = () => {
     let search = window.location.search
     debugger
@@ -30,7 +36,7 @@ class SectionList extends React.Component {
     return(
         <div className="container-fluid">
           <a className="btn btn-success float-right"
-             href="../section-editor/createSection.html">
+             href="../../section-editor/create.html">
             Create
           </a>
           <a className="btn btn-danger float-right"
@@ -49,7 +55,6 @@ class SectionList extends React.Component {
               <th>Capacity Remaining</th>
               <th>Campus</th>
               <th>Name</th>
-              <th>Course</th>
               <th>&nbsp;</th>
             </tr>
             </thead>
@@ -69,10 +74,14 @@ class SectionList extends React.Component {
                       </a>
                     </td>
                     <td>
-                      <a className="btn btn-primary"
+                      <a className="btn btn-primary float-right"
                          href={`../../section-editor/section-editor.html?sectionId=${section.crn}`}>
                         Edit
                       </a>
+                      <button className="btn btn-danger float-right"
+                              onClick={() => this.deleteSection(section.crn)}>
+                        Delete
+                      </button>
                     </td>
                   </tr>
               )
