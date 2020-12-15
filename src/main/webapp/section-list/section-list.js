@@ -17,14 +17,13 @@ class SectionList extends React.Component {
   }
 
   componentDidMount = () => {
-    this.findAllSections()
-/*    let search = window.location.search
+    let search = window.location.search
     debugger
     if(search) {
       this.findSectionsForCourse()
     } else {
       this.findAllSections()
-    }*/
+    }
   }
 
   render() {
@@ -35,6 +34,11 @@ class SectionList extends React.Component {
             <thead>
             <tr>
               <th>Section ID</th>
+              <th>Professor</th>
+              <th>Lecture Time</th>
+              <th>Capacity</th>
+              <th>Capacity Remaining</th>
+              <th>Campus</th>
               <th>Name</th>
               <th>Course</th>
               <th>&nbsp;</th>
@@ -42,9 +46,14 @@ class SectionList extends React.Component {
             </thead>
             <tbody>
             {
-              this.state.sections.map(section =>
+              this.state.sections.map((section) =>
                   <tr key={section.crn}>
                     <td>{section.crn}</td>
+                    <td>{section.professor}</td>
+                    <td>{section.lectureTime}</td>
+                    <td>{section.capacity}</td>
+                    <td>{section.capacityRemaining}</td>
+                    <td>{section.campus}</td>
                     <td>
                       <a href={`../../course-editor/course-editor.html?courseId=${section.courseId}`}>
                         {section.courseTitle}

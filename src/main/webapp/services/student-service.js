@@ -7,10 +7,10 @@ const findAllStudents = () =>
     fetch(`${FIND_ALL_STUDENTS}`)
     .then(response => response.json())
 
-const findCourseById = (studentId) =>
+const findStudentById = (studentId) =>
     fetch(`${FIND_STUDENT_BY_ID}/${studentId}`)
     .then(response => response.json())
 
-const createCourse = (student) =>
-    fetch(`${CREATE_STUDENT_URL}/${student.studentId}/${student.first}/${student.last}`)
+const createStudent = (first, last) =>
+    fetch(`${CREATE_STUDENT_URL}/${first}/${last}`)
     .then(response => response.json())
