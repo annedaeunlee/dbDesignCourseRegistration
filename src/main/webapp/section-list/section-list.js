@@ -82,6 +82,10 @@ class SectionList extends React.Component {
                               onClick={() => this.deleteSection(section.crn)}>
                         Delete
                       </button>
+                      <a className="btn btn-primary float-right"
+                         href={`../../section-editor/section-editor.html?sectionId=${section.crn}`}>
+                        Students
+                      </a>
                     </td>
                   </tr>
               )
